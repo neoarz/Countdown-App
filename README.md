@@ -4,16 +4,6 @@ Welcome to the **Countdown App**, inspired by the app from the movie *Countdown*
 
 ---
 
-## Features
-
-- **Random Timer Assignment**: Just like in the movie, you don't set the timer—the app assigns it to you.
-- **Cinematic Atmosphere**: Dark, ominous visuals and sound effects to replicate the movie's experience.
-- **Dynamic Animations**: Watch the countdown tick down with smooth and eerie animations.
-- **No Escape**: The timer cannot be paused or reset, adding to the suspense.
-- **Share the Experience**: Show off your assigned countdown to friends and challenge them to try the app.
-
----
-
 #Disclaimer
 
 By downloading and using the Countdown app (the "App"), you agree to the following terms and conditions.
