@@ -61,10 +61,10 @@ Contact Information: For inquiries or concerns, please contact...
 ## Screenshots
 
 ### App Launch
-![App Launch](https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Screenshot.jpg?token=GHSAT0AAAAAAC3M5UKLPIJKVDLYAJ7T4FSOZ3MZHMA){:width="300px"}
+<img src="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Screenshot.jpg?token=GHSAT0AAAAAAC3M5UKLPIJKVDLYAJ7T4FSOZ3MZHMA" width="300" />
 
 ### Countdown in Progress
-![Countdown in Progress](https://github.com/neoarz/Countdown-App/raw/main/Assets/ScreenRecording.mov){:width="300px"}
+<img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/ScreenRecording.mov" width="300" />
 
 *Replace placeholder images with actual screenshots of your app.*
 
