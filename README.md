@@ -24,10 +24,6 @@ Legal Disclaimer: By downloading the App, you enter into this agreement willingl
 
 Contact Information: For inquiries or concerns, please contact...
 
-# Countdown App (Inspired by the Movie "Countdown")
-
-Welcome to the **Countdown App**, a suspenseful application inspired by the thrilling concept from the movie *Countdown*. Once you launch the app, a timer is randomly assigned to you, and the countdown begins. Are you ready to face the suspense?
-
 ---
 
 ## Installation
@@ -65,11 +61,11 @@ Welcome to the **Countdown App**, a suspenseful application inspired by the thri
 ## Screenshots
 
 ### App Launch
-![App Launch](https://via.placeholder.com/800x400.png?text=App+Launch+Screen)
+![App Launch](https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Screenshot.jpg?token=GHSAT0AAAAAAC3M5UKLPIJKVDLYAJ7T4FSOZ3MZHMA)
 
 
 ### Countdown in Progress
-![Countdown in Progress](https://via.placeholder.com/800x400.png?text=Countdown+In+Progress)
+![Countdown in Progress](https://github.com/neoarz/Countdown-App/raw/main/Assets/ScreenRecording.mov)
 
 *Replace placeholder images with actual screenshots of your app.*
 
