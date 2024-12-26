@@ -80,4 +80,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 - Inspired by the movie *Countdown*.
 - I am not in any way affiliated with the real Countdown movie, this is only a trash fan made app.
 
----
