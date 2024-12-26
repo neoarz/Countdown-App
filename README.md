@@ -66,7 +66,6 @@ Contact Information: For inquiries or concerns, please contact...
 ### Countdown in Progress
 <img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenrecording.gif" width="300" />
 
-*Replace placeholder images with actual screenshots of your app.*
 
 ---
 
@@ -82,4 +81,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 - I am not in any way affiliated with the real Countdown movie, this is only a trash fan made app.
 
 ---
-
