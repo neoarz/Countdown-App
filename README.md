@@ -4,7 +4,7 @@ Welcome to the **Countdown App**, inspired by the app from the movie *Countdown*
 
 ---
 
-#Disclaimer
+# Disclaimer
 
 By downloading and using the Countdown app (the "App"), you agree to the following terms and conditions.
 
@@ -13,8 +13,6 @@ Acceptance of Fate: The countdown timer presented is final and binding, and the 
 Entertainment Disclaimer: The App is designed for entertainment purposes only, and any decisions made based on the countdown are at the user's sole responsibility.
 
 Irrevocability: Once the countdown timer begins, it cannot be altered, reset, or stopped, and attempts to tamper with it may result in undefined and irreversible consequences.
-
-User Eligibility: By using the App, you confirm that you are 18 years of age or older; individuals under 18 are strictly prohibited from accessing the App.
 
 Forbidden Actions: You agree not to modify, reverse-engineer, or tamper with the App's code or features, and you will not hold the developers liable for any outcomes related to the timer, including supernatural or inexplicable occurrences linked to the App.
 
