@@ -1,6 +1,6 @@
 # Countdown App (Inspired by the Movie "Countdown")
 
-Welcome to the **Countdown App**, inspired by the app from the movie *Countdown*. This app a sets a different time for every individual "until death" in the movie.
+Welcome to the **Countdown App**, inspired by the app from the movie *Countdown*. This app a sets a different time for every individual's death like in the movie.
 
 ---
 
