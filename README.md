@@ -64,7 +64,7 @@ Contact Information: For inquiries or concerns, please contact...
 <img src="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Screenshot.jpg?token=GHSAT0AAAAAAC3M5UKLPIJKVDLYAJ7T4FSOZ3MZHMA" width="300" />
 
 ### Countdown in Progress
-<img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/ScreenRecording.mov" width="300" />
+<img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenrecording.gif" width="300" />
 
 *Replace placeholder images with actual screenshots of your app.*
 
