@@ -79,8 +79,6 @@ Welcome to the **Countdown App**, a suspenseful application inspired by the thri
 ### App Launch
 ![App Launch](https://via.placeholder.com/800x400.png?text=App+Launch+Screen)
 
-### Timer Assigned
-![Timer Assigned](https://via.placeholder.com/800x400.png?text=Timer+Assigned)
 
 ### Countdown in Progress
 ![Countdown in Progress](https://via.placeholder.com/800x400.png?text=Countdown+In+Progress)
