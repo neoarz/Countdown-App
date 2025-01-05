@@ -41,7 +41,7 @@ Contact Information: For inquiries or concerns, please contact...
    ```
 3. Open the project in Xcode:
    ```bash
-   open Countdown-App.xcodeproj
+   open Countdown.xcodeproj
    ```
 4. Build and run the app on a simulator or physical device.
 
