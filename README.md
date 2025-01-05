@@ -58,12 +58,9 @@ Contact Information: For inquiries or concerns, please contact...
 
 ## Screenshots
 
-### App Launch
-<img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenshot.jpg" width="300" />
-
-### Countdown in Progress
-<img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenrecording.gif" width="300" />
-
+| <center><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenshot.jpg" width="300" alt="App Launch"></center> | <center><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenrecording.gif" width="300" alt="Countdown in Progress"></center> |
+|:--:|:--:|
+| <center>App Launch</center> | <center>Countdown in Progress</center> |
 
 ---
 
