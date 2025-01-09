@@ -126,7 +126,7 @@ struct TimeUnitRow: View {
             Text(label)
                 .font(.system(size: 24, weight: .semibold))
                 .foregroundColor(color)
-                .padding(.top, 35) // Adjust this value to position the text lower
+                .padding(.top, 35) 
         }
     }
 }
