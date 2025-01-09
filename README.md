@@ -24,6 +24,15 @@ Contact Information: For inquiries or concerns, please contact...
 
 ---
 
+
+## Screenshots
+
+| <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Counter.PNG"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Counter.PNG"><img alt="Sources" src="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/Counter.PNG" width="200"></picture></p> | <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/ClockTicking.gif"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/ClockTicking.gif"><img alt="Store" src="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/ClockTicking.gif" width="200"></picture></p> | <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/TOC.PNG"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/TOC.PNG"><img alt="Library" src="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/TOC.PNG" width="200"></picture></p> | <p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/User%20Agreement.PNG"><source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/User%20Agreement.PNG"><img alt="Signing" src="https://raw.githubusercontent.com/neoarz/Countdown-App/main/Assets/User%20Agreement.PNG" width="200"></picture></p> |
+|:--:|:--:|:--:|:--:|
+| **Counter** | **Clock Ticking** | **Accept or Decline TOC** | **User Agreement Broken** |
+
+---
+
 ## Installation
 
 ### Prerequisites
@@ -54,13 +63,7 @@ Contact Information: For inquiries or concerns, please contact...
 3. **Experience the Thrill**: Watch as the timer ticks down and feel the suspense.
 4. **Challenge Your Friends**: Share your timer and dare them to see what they get.
    
----
 
-## Screenshots
-
-| <center><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenshot.jpg" width="300" alt="App Launch"></center> | <center><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/Screenrecording.gif" width="300" alt="Countdown in Progress"></center> |
-|:--:|:--:|
-| <center>App Launch</center> | <center>Countdown in Progress</center> |
 
 ---
 
