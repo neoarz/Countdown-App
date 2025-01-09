@@ -1,6 +1,8 @@
 # Countdown App (Inspired by the Movie "Countdown")
 
-Welcome to the **Countdown App**, inspired by the app from the movie *Countdown*. This app a sets a different time for every individual's death like in the movie.
+[![GitHub Release](https://img.shields.io/github/v/release/neoarz/Countdown-App?include_prereleases)](https://github.com/neoarz/Countdown-App/releases)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/neoarz/Countdown-App/pulls)
+[![GitHub License](https://img.shields.io/github/license/neoarz/Countdown-App?color=%23C96FAD)](https://github.com/neoarz/Countdown-App/blob/main/LICENSE)
 
 ---
 
@@ -19,7 +21,16 @@ This app is purely for entertainment purposes and is not intended to predict or 
 
 ---
 
-## Installation
+## Usage
+
+1. **Launch the App**: Open the app on your iPhone. Ipad support will come soon 
+2. **Receive Your Timer**: The app will assign you a random countdown.
+3. **Experience the Thrill**: Watch as the timer ticks down and feel the suspense.
+4. **Challenge Your Friends**: Share your timer and dare them to see what they get.
+
+---
+   
+## Building
 
 ### Prerequisites
 - macOS with Xcode installed.
@@ -39,17 +50,6 @@ This app is purely for entertainment purposes and is not intended to predict or 
    open Countdown.xcodeproj
    ```
 4. Build and run the app on a simulator or physical device.
-
----
-
-## Usage
-
-1. **Launch the App**: Open the app on your iPhone. Ipad support will come soon 
-2. **Receive Your Timer**: The app will assign you a random countdown.
-3. **Experience the Thrill**: Watch as the timer ticks down and feel the suspense.
-4. **Challenge Your Friends**: Share your timer and dare them to see what they get.
-   
-
 
 ---
 
