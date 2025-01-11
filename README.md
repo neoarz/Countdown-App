@@ -22,14 +22,13 @@ This app is purely for entertainment purposes and is not intended to predict or 
 ---
 ## Download
 
-<a href=""><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/AddtoAltstore.png" height="70"></a>
+<a href=""><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/AddtoAltstore.png" height="60"></a>
 &nbsp;
-<a href="https://balackburn.github.io/YTLitePlus"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/AddtoSidestore.png" height="70"></a>
+<a href="https://balackburn.github.io/YTLitePlus"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/AddtoSidestore.png" height="60"></a>
 &nbsp;
-<a href="https://github.com/neoarz/Countdown-App/releases/download/release/Countdown.ipa"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/downloadipa.png" height="70"></a>
+<a href="https://github.com/neoarz/Countdown-App/releases/download/release/Countdown.ipa"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/downloadipa.png" height="60"></a>
 &nbsp;
-<a href=""><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/repo.png" height="70"></a>
-&nbsp;
+<a href=""><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/repo.png" height="60"></a>
 
 ---
 
