@@ -21,8 +21,8 @@
       "versionDescription": "Move the Clock to the middle of the screen to have the authentic feel\n\nAdded device rotation lock, the app shouldn't move side to side when rotating device.\n\nClock should work on iPad now, still yet to test"
     }
   ],
-  "identifier": "com.example.source",
-  "name": "Source Name",
+  "identifier": "com.neo.countdown",
+  "name": "Countdown - By Neo",
   "news": [],
   "userInfo": {}
 }
