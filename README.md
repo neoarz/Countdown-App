@@ -21,14 +21,15 @@ This app is purely for entertainment purposes and is not intended to predict or 
 
 ---
 ## Download
-
+<h1 align="center">
 <a href="https://tinyurl.com/ycxm9jj8"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/AddtoAltstore.png" height="60"></a>
 &nbsp;
 <a href="https://tinyurl.com/cdsidestore"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/AddtoSidestore.png" height="60"></a>
+&nbsp;
 <a href="https://github.com/neoarz/Countdown-App/releases/download/release/Countdown.ipa"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/downloadipa.png" height="60"></a>
 &nbsp;
 <a href="https://raw.githubusercontent.com/neoarz/Countdown-App/refs/heads/main/Countdown.json"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/repo.png" height="60"></a>
-
+</h1>
 ---
 
 ## Usage
