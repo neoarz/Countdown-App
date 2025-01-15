@@ -19,7 +19,7 @@ jobs:
         sudo xcodebuild -runFirstLaunch
     - name: Build with Xcode
       run: |
-        xcodebuild -workspace Countdown.xcworkspace -scheme Countdown -sdk iphoneos -configuration Release clean build
+        xcodebuild -workspace project.xcworkspace -scheme Countdown -sdk iphoneos -configuration Release clean build
     - name: Run tests
       run: |
-        xcodebuild test -workspace Countdown.xcworkspace -scheme Countdown -destination 'platform=iOS Simulator,name=iPhone 12' -enableCodeCoverage YES
+        xcodebuild test -workspace project.xcworkspace -scheme Countdown -destination 'platform=iOS Simulator,name=iPhone 12' -enableCodeCoverage YES
