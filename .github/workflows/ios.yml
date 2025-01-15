@@ -1,4 +1,4 @@
-name: iOS Build for Testing
+name: iOS Build and Archive
 
 on:
   push:
@@ -13,29 +13,31 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Install Fastlane
-        run: brew install fastlane
+      - name: Install Dependencies
+        run: |
+          brew install fastlane
+          gem install bundler && bundle install
 
       - name: Build and Archive
         run: |
           xcodebuild clean archive \
-            -workspace project.xcworkspace \
+            -workspace Countdown.xcodeproj/project.xcworkspace \
             -scheme Countdown \
             -archivePath $PWD/build/Countdown.xcarchive \
-            CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_IDENTITY= \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_ENTITLEMENTS="" \
+            CODE_SIGN_ENTITLEMENTS= \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Export .ipa
         run: |
           xcodebuild -exportArchive \
             -archivePath $PWD/build/Countdown.xcarchive \
-            -exportOptionsPlist <(echo '{ "compileBitcode": false, "signingStyle": "manual", "provisioningProfiles": {} }') \
-            -exportPath $PWD/build
+            -exportPath $PWD/build \
+            -allowProvisioningUpdates
 
       - name: Upload .ipa
         uses: actions/upload-artifact@v3
         with:
-          name: Countdown-IPA
+          name: App-IPA
           path: ./build/*.ipa
