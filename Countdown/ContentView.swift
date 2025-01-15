@@ -1,8 +1,3 @@
-//
-//  CountdownApp.swift
-//  Countdown
-//
-//  Created neoarz on 12/25/24.
 import SwiftUI
 
 struct CountdownView: View {
@@ -43,7 +38,7 @@ struct CountdownView: View {
             Color.black
                 .ignoresSafeArea()
 
-            VStack(spacing: 16) {
+            VStack(spacing: 40) {
                 TimeUnitRow(
                     value: timeRemaining.convertToYears(),
                     label: "YRS",
@@ -105,9 +100,10 @@ struct CountdownView: View {
     static func generateWeightedRandomTime() -> TimeInterval {
         let randomValue = Double.random(in: 0...100)
         if randomValue < 75 {
-            return TimeInterval(Int.random(in: 1...604_800))
+            return TimeInterval(Int.random(in: 1...604_801))
         } else {
             return TimeInterval(Int.random(in: 604_801...788_400_000))
+            //604_801
         }
     }
 }
@@ -116,21 +112,38 @@ struct TimeUnitRow: View {
     var value: Int
     var label: String
     var color: Color
-
+    
     var body: some View {
-        HStack(spacing: 8) {
-            Text(String(format: "%02d", value))
-                .font(.system(size: 95, weight: .bold))
-                .foregroundColor(color)
-
-            Text(label)
-                .font(.system(size: 24, weight: .semibold))
-                .foregroundColor(color)
-                .padding(.top, 35) 
+        GeometryReader { geometry in
+            HStack(spacing: 4) {
+              
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                
+                Text(String(format: value >= 100 ? "%03d" : "%02d", value))
+                    .font(.system(size: 95, weight: .bold))
+                    .foregroundColor(color)
+                    .monospacedDigit()
+                    .frame(minWidth: geometry.size.width * 0.4, alignment: .trailing)
+                    .layoutPriority(1)
+                
+               
+                Text(label)
+                    .font(.system(size: 24, weight: .semibold))
+                    .foregroundColor(color)
+                    .padding(.top, 48)
+                    .frame(width: geometry.size.width * 0.2, alignment: .leading)
+                
+                
+                Spacer()
+                Spacer()
+            }
         }
+        .frame(height: 100)
     }
 }
-
 struct NotificationView: View {
     @Binding var isVisible: Bool
 
@@ -145,16 +158,16 @@ struct NotificationView: View {
                 VStack(alignment: .leading) {
                     Text("Countdown")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                     Text("User Agreement broken")
                         .font(.subheadline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                 }
                 Spacer()
             }
             .padding()
-            .background(Color.gray.opacity(0.9))
-            .cornerRadius(12)
+            .background(Color.white)
+            .cornerRadius(1)
             .shadow(radius: 10)
             .padding()
             .onTapGesture {
