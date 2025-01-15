@@ -24,9 +24,9 @@ jobs:
             -workspace Countdown.xcodeproj/project.xcworkspace \
             -scheme Countdown \
             -archivePath $PWD/build/Countdown.xcarchive \
-            CODE_SIGN_IDENTITY= \
+            CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_ENTITLEMENTS= \
+            CODE_SIGN_ENTITLEMENTS="" \
             CODE_SIGNING_ALLOWED=NO
 
       - name: Export .ipa
@@ -34,7 +34,11 @@ jobs:
           xcodebuild -exportArchive \
             -archivePath $PWD/build/Countdown.xcarchive \
             -exportPath $PWD/build \
-            -allowProvisioningUpdates
+            -exportOptionsPlist ./ExportOptions.plist \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_ENTITLEMENTS="" \
+            CODE_SIGNING_ALLOWED=NO
 
       - name: Upload .ipa
         uses: actions/upload-artifact@v3
