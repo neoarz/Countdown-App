@@ -19,7 +19,9 @@ jobs:
         sudo xcodebuild -runFirstLaunch
     - name: Build with Xcode
       run: |
+        cd Countdown  # Navigate to the Countdown directory where the .xcworkspace is located
         xcodebuild -workspace project.xcworkspace -scheme Countdown -sdk iphoneos -configuration Release clean build
     - name: Run tests
       run: |
+        cd Countdown  # Navigate to the Countdown directory where the .xcworkspace is located
         xcodebuild test -workspace project.xcworkspace -scheme Countdown -destination 'platform=iOS Simulator,name=iPhone 12' -enableCodeCoverage YES
