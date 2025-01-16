@@ -22,8 +22,8 @@ final class CountdownUITestsLaunchTests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        // Insert steps here to perform after app launch but before taking a screenshot,
-        // such as logging into a test account or navigating somewhere in the app
+        // Lemme know how shi runs pls i need feedback lmao
+        // Im trash at developing, open for any suggestions
 
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Launch Screen"
