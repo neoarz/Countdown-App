@@ -42,27 +42,32 @@ struct CountdownView: View {
                 TimeUnitRow(
                     value: timeRemaining.convertToYears(),
                     label: "YRS",
-                    color: timeRemaining.convertToYears() == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToDays() % 365,
                     label: "DAY",
-                    color: timeRemaining.convertToDays() % 365 == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToHours(),
                     label: "HRS",
-                    color: timeRemaining.convertToHours() == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToMinutes(),
                     label: "MIN",
-                    color: timeRemaining.convertToMinutes() == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToSeconds(),
                     label: "SEC",
-                    color: timeRemaining.convertToSeconds() == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
+
                 )
             }
             .onAppear {
@@ -115,41 +120,43 @@ struct TimeUnitRow: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack(spacing: 4) {
-              
-                Spacer()
-                Spacer()
-                Spacer()
-                
-                
-                Text(String(format: value >= 100 ? "%03d" : "%02d", value))
-                    .font(.system(size: 95, weight: .bold))
-                    .foregroundColor(color)
-                    .monospacedDigit()
-                    .frame(minWidth: geometry.size.width * 0.4, alignment: .trailing)
-                    .layoutPriority(1)
-                
-               
-                Text(label)
-                    .font(.system(size: 24, weight: .semibold))
-                    .foregroundColor(color)
-                    .padding(.top, 48)
-                    .frame(width: geometry.size.width * 0.2, alignment: .leading)
-                
-                
-                Spacer()
-                Spacer()
+
+            let scale = geometry.size.width / 360
+            
+            ZStack {
+                HStack(alignment: .center, spacing: 4 * scale) {
+                    Spacer()
+                    
+
+                    Text(String(format: value >= 100 ? "%03d" : "%02d", value))
+                        .font(.system(size: 95 * scale, weight: .bold))
+                        .foregroundColor(color)
+                        .monospacedDigit()
+                        .layoutPriority(1)
+
+
+                    Text(label)
+                        .font(.system(size: 24 * scale, weight: .semibold))
+                        .foregroundColor(color)
+                        .padding(.top, 48 * scale) // Keeps proportional vertical alignment
+                        .frame(width: geometry.size.width * 0.2, alignment: .leading)
+                }
+                .frame(maxWidth: .infinity)
+                .position(x: geometry.size.width * 0.35, y: geometry.size.height / 2)
             }
         }
         .frame(height: 100)
     }
 }
+
+
 struct NotificationView: View {
     @Binding var isVisible: Bool
 
     var body: some View {
         VStack {
             Spacer()
+            
             HStack {
                 Image("hi")
                     .resizable()
