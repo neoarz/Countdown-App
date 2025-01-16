@@ -21,13 +21,23 @@
       "versionDescription": "The app now supports iPadOS, it may look squished and uneven on some models. This will be fixed in the next update.The app now supports all iOS and iPadOS versions from 15.6 onward. Before it was only compatible for verions 17.0+. Compatibility with Xcode 14.0 and later has been added to ensure smoother development and builds. The countdown numbers will now only turn red when reaching zero, this was not the case before. Rest of the release notes are in the github page",
       "versions": [
          {
+          "version": "1.3",
+          "buildVersion": "5",
+          "date": "2025-01-15T21:37:29-05:00",
+          "localizedDescription": "The app now supports iPadOS, it may look squished and uneven on some models. This will be fixed in the next update.The app now supports all iOS and iPadOS versions from 15.6 onward. Before it was only compatible for verions 17.0+. Compatibility with Xcode 14.0 and later has been added to ensure smoother development and builds. The countdown numbers will now only turn red when reaching zero, this was not the case before. Rest of the release notes are in the github page",
+          "downloadURL": "https://github.com/neoarz/Countdown-App/releases/download/v1.3/Countdown.ipa",
+          "size": 400000,
+          "minOSVersion": "15.6",
+          "maxOSVersion": "18.3"
+         },
+         {
           "version": "1.2.1",
           "buildVersion": "4",
           "date": "2025-1-10",
           "localizedDescription": "UI improvements and bug fixes for stability.",
           "downloadURL": "https://github.com/neoarz/Countdown-App/releases/download/v1.2.1/Countdown.ipa",
           "size": 395000,
-          "minOSVersion": "15.6",
+          "minOSVersion": "17.0",
           "maxOSVersion": "18.3"
         },
         {
