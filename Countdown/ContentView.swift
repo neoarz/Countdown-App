@@ -138,11 +138,11 @@ struct TimeUnitRow: View {
                     Text(label)
                         .font(.system(size: 24 * scale, weight: .semibold))
                         .foregroundColor(color)
-                        .padding(.top, 48 * scale) // Keeps proportional vertical alignment
+                        .padding(.top, 48 * scale) 
                         .frame(width: geometry.size.width * 0.2, alignment: .leading)
                 }
                 .frame(maxWidth: .infinity)
-                .position(x: geometry.size.width * 0.35, y: geometry.size.height / 2)
+                .position(x: geometry.size.width * 0.36, y: geometry.size.height / 2)
             }
         }
         .frame(height: 100)
