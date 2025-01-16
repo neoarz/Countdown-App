@@ -32,8 +32,10 @@ This app is purely for entertainment purposes and is not intended to predict or 
 <a href="https://github.com/neoarz/Countdown-App/releases/download/v1.3/Countdown.ipa"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/downloadipa.png" height="60"></a>
 &nbsp;
 <a href="https://raw.githubusercontent.com/neoarz/Countdown-App/refs/heads/main/Countdown.json"><img src="https://github.com/neoarz/Countdown-App/raw/main/Assets/repo.png" height="60"></a>
+   &nbsp;
 </h1>
----
+
+
 
 ## Usage
 
