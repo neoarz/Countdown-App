@@ -28,7 +28,7 @@
           "downloadURL": "https://github.com/neoarz/Countdown-App/releases/download/v1.3/Countdown.ipa",
           "size": 400000,
           "minOSVersion": "15.6",
-          "maxOSVersion": "18.3"
+          "maxOSVersion": "18.2"
          },
          {
           "version": "1.2.1",
