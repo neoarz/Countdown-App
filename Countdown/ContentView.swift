@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct CountdownView: View {
     @State private var timeRemaining: TimeInterval
@@ -105,13 +106,17 @@ struct CountdownView: View {
     static func generateWeightedRandomTime() -> TimeInterval {
         let randomValue = Double.random(in: 0...100)
         if randomValue < 75 {
-            return TimeInterval(Int.random(in: 1...604_801))
+            return TimeInterval(Int.random(in: 100...604_801))
         } else {
             return TimeInterval(Int.random(in: 604_801...788_400_000))
             //604_801
         }
     }
 }
+
+
+
+
 
 struct TimeUnitRow: View {
     var value: Int
@@ -120,39 +125,64 @@ struct TimeUnitRow: View {
     
     var body: some View {
         GeometryReader { geometry in
-
-            let scale = geometry.size.width / 360
+            let baseWidth: CGFloat = 393
+            let isIPad = UIDevice.current.userInterfaceIdiom == .pad
+            
+            let maxScale: CGFloat = isIPad ? 2.4 : 1.5
+            let baseScale = geometry.size.width / baseWidth
+            let scale = min(baseScale, maxScale)
             
             ZStack {
                 HStack(alignment: .center, spacing: 4 * scale) {
                     Spacer()
                     
-
                     Text(String(format: value >= 100 ? "%03d" : "%02d", value))
-                        .font(.system(size: 95 * scale, weight: .bold))
+                        .font(.system(size: 105 * scale, weight: .bold))
                         .foregroundColor(color)
                         .monospacedDigit()
                         .layoutPriority(1)
-
-
+                    
                     Text(label)
-                        .font(.system(size: 24 * scale, weight: .semibold))
+                        .font(.system(size: 28 * scale, weight: .semibold))
                         .foregroundColor(color)
-                        .padding(.top, 48 * scale) 
-                        .frame(width: geometry.size.width * 0.2, alignment: .leading)
+                        .padding(.top, 55 * scale)
+                        .frame(width: geometry.size.width * (isIPad ? 0.1 : 0.2), alignment: .leading)
                 }
-                .frame(maxWidth: .infinity)
-                .position(x: geometry.size.width * 0.36, y: geometry.size.height / 2)
+                .padding(.trailing, 55 * scale)
             }
         }
-        .frame(height: 100)
+        .frame(height: 100 * (UIScreen.main.bounds.width / (UIDevice.current.userInterfaceIdiom == .pad ? 834 : 393)))
     }
 }
 
 
+
+
+class SoundManager: NSObject, AVAudioPlayerDelegate {
+    static let shared = SoundManager()
+    var audioPlayer: AVAudioPlayer?
+    
+    func playSound() {
+        if let soundURL = Bundle.main.url(forResource: "CountdownSoundEffect", withExtension: "mp3") {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer?.delegate = self
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+            } catch {
+                print("Error playing sound: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+
+    }
+}
+
 struct NotificationView: View {
     @Binding var isVisible: Bool
-
+    
     var body: some View {
         VStack {
             Spacer()
@@ -186,8 +216,14 @@ struct NotificationView: View {
         .background(Color.black.opacity(0.5).ignoresSafeArea())
         .transition(.scale)
         .animation(.spring(), value: isVisible)
+        .onAppear {
+            SoundManager.shared.playSound()
+        }
     }
 }
+
+
+
 
 struct FullScreenTermsView: View {
     @Binding var isVisible: Bool
