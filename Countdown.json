@@ -22,9 +22,9 @@
       "versions": [
         {
           "version": "1.4.1",
-          "buildVersion": "6",
+          "buildVersion": "7",
           "date": "2025-01-19T21:37:29-05:00",
-          "localizedDescription": "UI improvements and bug fixes for stability. The release notes are in the github page.",
+          "localizedDescription": "Fix crucial bug leading to numbers not turning red when hitting 0",
           "downloadURL": "https://github.com/neoarz/Countdown-App/releases/download/1.4.1/Countdown.ipa",
           "size": 460000,
           "minOSVersion": "15.6",
