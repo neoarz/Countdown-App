@@ -34,6 +34,29 @@ struct CountdownView: View {
         }
     }
 
+    private enum TimeUnit {
+        case years, days, hours, minutes, seconds
+    }
+
+    private func shouldBeRed(unit: TimeUnit) -> Bool {
+        if timeRemaining == 0 {
+            return true
+        }
+        
+        switch unit {
+        case .years:
+            return timeRemaining.convertToYears() == 0
+        case .days:
+            return timeRemaining.convertToYears() == 0 && timeRemaining.convertToDays() % 365 == 0
+        case .hours:
+            return timeRemaining.convertToDays() == 0 && timeRemaining.convertToHours() == 0
+        case .minutes:
+            return timeRemaining.convertToHours() == 0 && timeRemaining.convertToMinutes() == 0
+        case .seconds:
+            return timeRemaining.convertToMinutes() == 0 && timeRemaining.convertToSeconds() == 0
+        }
+    }
+
     var body: some View {
         ZStack {
             Color.black
@@ -43,32 +66,27 @@ struct CountdownView: View {
                 TimeUnitRow(
                     value: timeRemaining.convertToYears(),
                     label: "YRS",
-                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
-
+                    color: shouldBeRed(unit: .years) ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToDays() % 365,
                     label: "DAY",
-                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
-
+                    color: shouldBeRed(unit: .days) ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToHours(),
                     label: "HRS",
-                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
-
+                    color: shouldBeRed(unit: .hours) ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToMinutes(),
                     label: "MIN",
-                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
-
+                    color: shouldBeRed(unit: .minutes) ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
                 )
                 TimeUnitRow(
                     value: timeRemaining.convertToSeconds(),
                     label: "SEC",
-                    color: timeRemaining == 0 ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
-
+                    color: shouldBeRed(unit: .seconds) ? Color(red: 0.5, green: 0.0, blue: 0.0) : Color.white
                 )
             }
             .onAppear {
@@ -109,14 +127,9 @@ struct CountdownView: View {
             return TimeInterval(Int.random(in: 100...604_801))
         } else {
             return TimeInterval(Int.random(in: 604_801...788_400_000))
-            //604_801
         }
     }
 }
-
-
-
-
 
 struct TimeUnitRow: View {
     var value: Int
@@ -155,9 +168,6 @@ struct TimeUnitRow: View {
     }
 }
 
-
-
-
 class SoundManager: NSObject, AVAudioPlayerDelegate {
     static let shared = SoundManager()
     var audioPlayer: AVAudioPlayer?
@@ -176,7 +186,6 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-
     }
 }
 
@@ -221,9 +230,6 @@ struct NotificationView: View {
         }
     }
 }
-
-
-
 
 struct FullScreenTermsView: View {
     @Binding var isVisible: Bool
