@@ -1,5 +1,10 @@
 import SwiftUI
 import AVFoundation
+import UIKit
+
+
+
+
 
 struct CountdownView: View {
     @State private var timeRemaining: TimeInterval
@@ -61,7 +66,9 @@ struct CountdownView: View {
         ZStack {
             Color.black
                 .ignoresSafeArea()
-
+                .statusBar(hidden: true)
+                .hideHomeIndicator()
+            
             VStack(spacing: 40) {
                 TimeUnitRow(
                     value: timeRemaining.convertToYears(),
@@ -103,6 +110,7 @@ struct CountdownView: View {
                     UserDefaults.standard.set(true, forKey: "hasAcceptedTerms")
                 }
             }
+            
         }
     }
 
@@ -127,9 +135,18 @@ struct CountdownView: View {
             return TimeInterval(Int.random(in: 100...604_801))
         } else {
             return TimeInterval(Int.random(in: 604_801...788_400_000))
+            //604_801
         }
     }
 }
+
+
+
+
+
+
+
+
 
 struct TimeUnitRow: View {
     var value: Int
@@ -139,55 +156,76 @@ struct TimeUnitRow: View {
     var body: some View {
         GeometryReader { geometry in
             let baseWidth: CGFloat = 393
+            let baseIPadWidth: CGFloat = 834
             let isIPad = UIDevice.current.userInterfaceIdiom == .pad
             
-            let maxScale: CGFloat = isIPad ? 2.4 : 1.5
-            let baseScale = geometry.size.width / baseWidth
-            let scale = min(baseScale, maxScale)
+            let scale: CGFloat = isIPad
+                ? max(1.3, geometry.size.width / baseIPadWidth * 1.5)
+                : geometry.size.width / baseWidth
             
             ZStack {
                 HStack(alignment: .center, spacing: 4 * scale) {
-                    Spacer()
+                    if !isIPad {
+                        Spacer()
+                    }
                     
                     Text(String(format: value >= 100 ? "%03d" : "%02d", value))
-                        .font(.system(size: 105 * scale, weight: .bold))
+                        .font(.system(size: isIPad ? 95 * scale : 105 * scale, weight: .bold))
                         .foregroundColor(color)
                         .monospacedDigit()
+                        .frame(minWidth: isIPad ? geometry.size.width * 0.3 : 0, alignment: .trailing)
                         .layoutPriority(1)
                     
                     Text(label)
-                        .font(.system(size: 28 * scale, weight: .semibold))
+                        .font(.system(size: isIPad ? 28 * scale : 28 * scale, weight: .semibold))
                         .foregroundColor(color)
-                        .padding(.top, 55 * scale)
-                        .frame(width: geometry.size.width * (isIPad ? 0.1 : 0.2), alignment: .leading)
+                        .padding(.top, isIPad ? 45 * scale : 55 * scale)
+                        .frame(width: geometry.size.width * (isIPad ? 0.15 : 0.2), alignment: .leading)
                 }
-                .padding(.trailing, 55 * scale)
+                .frame(maxWidth: .infinity, alignment: isIPad ? .center : .trailing)
+                .padding(.trailing, isIPad ? 0 : 55 * scale)
+                .padding(.leading, isIPad ? 0 : 0)
             }
         }
-        .frame(height: 100 * (UIScreen.main.bounds.width / (UIDevice.current.userInterfaceIdiom == .pad ? 834 : 393)))
+        .frame(height: 100 * (UIDevice.current.userInterfaceIdiom == .pad
+            ? max(1.3, UIScreen.main.bounds.width / 834 * 1.5)
+            : UIScreen.main.bounds.width / 393))
+        .offset(y: -16 * min(max(UIScreen.main.bounds.width / 393, 0.8), 1.2))
     }
 }
+
+
+
 
 class SoundManager: NSObject, AVAudioPlayerDelegate {
     static let shared = SoundManager()
     var audioPlayer: AVAudioPlayer?
     
     func playSound() {
-        if let soundURL = Bundle.main.url(forResource: "CountdownSoundEffect", withExtension: "mp3") {
-            do {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            if let soundURL = Bundle.main.url(forResource: "CountdownSoundEffect", withExtension: "mp3") {
                 audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
                 audioPlayer?.delegate = self
                 audioPlayer?.prepareToPlay()
                 audioPlayer?.play()
-            } catch {
-                print("Error playing sound: \(error.localizedDescription)")
             }
+        } catch {
+            print("Error setting up audio: \(error.localizedDescription)")
         }
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
     }
 }
+
+
+
+
+
+
 
 struct NotificationView: View {
     @Binding var isVisible: Bool
@@ -231,55 +269,76 @@ struct NotificationView: View {
     }
 }
 
+
+
+
+
+
+
+
 struct FullScreenTermsView: View {
     @Binding var isVisible: Bool
     var onAccept: () -> Void
     @State private var showAcceptPopup: Bool = false
+    @State private var isAcceptPressed: Bool = false
+    @State private var isCancelPressed: Bool = false
 
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
+            
 
             VStack(spacing: 24) {
-                Text("User Agreement")
+                Text("End User Agreement")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .padding(.top, 50)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        Text("Copyright (c) Countdown Fate Systems, LLC")
-                            .font(.callout)
+                        Text("Copyright")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        
+                        Text("Copyright (c) Neo Fate Systems, LLC")
+                            .font(.body)
                             .foregroundColor(.black)
 
+                        Text("Important Notice")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            
                         Text("IMPORTANT: PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THIS SOFTWARE.")
                             .foregroundColor(.black)
-                            .font(.callout)
-
-                        Text("+LICENSE ++++++++++++++++++++")
-                            .foregroundColor(.black)
-                            .font(.callout)
-
-                        Text("""
-                        +++ By downloading and using the Countdown app, you agree to the following terms and conditions.
+                            .font(.body)
                         
-                        Acceptance of Fate: The countdown timer presented is final and binding, and the App is not liable for any consequences resulting from the time displayed.
-
-                        Irrevocability: Once the countdown timer begins, it cannot be altered, reset, or stopped, and attempts to tamper with it may result in undefined and irreversible consequences.
-
-                        Forbidden Actions: You agree not to modify, reverse-engineer, or tamper with the App's code or features, and you will not hold the developers liable for any outcomes related to the timer, your life, and supernatural or inexplicable occurrences linked to the App.
-
-                        Limitation of Liability: The creators and developers of the App are not responsible for emotional distress, physical harm, or unforeseen events caused by reliance on the countdown timer.
-
-                        Updates and Modifications: The developers reserve the right to update these terms and the App's functionality at any time without prior notice, and continued use of the App constitutes acceptance of such changes.
-
-                        Legal Disclaimer: By downloading the App, you enter into this agreement willingly and accept all potential risks associated with its use.
-
-                        Contact Information: For inquiries or concerns, please contact...
-                        """)
-                        .foregroundColor(.black)
-                        .font(.callout)
+                        VStack(alignment: .leading, spacing: 16) {
+                            TermsSection(title: "1. Acceptance of Fate",
+                                       content: "The countdown timer presented is final and binding, and the App is not liable for any consequences resulting from the time displayed.")
+                            
+                            TermsSection(title: "2. Irrevocability",
+                                       content: "Once the countdown timer begins, it cannot be altered, reset, or stopped, and attempts to tamper with it may result in undefined and irreversible consequences.")
+                            
+                            TermsSection(title: "3. Forbidden Actions",
+                                       content: "You agree not to modify, reverse-engineer, or tamper with the App's code or features, and you will not hold the developers liable for any outcomes related to the timer, your life, and supernatural or inexplicable occurrences linked to the App.")
+                            
+                            TermsSection(title: "4. Limitation of Liability",
+                                       content: "The creators and developers of the App are not responsible for emotional distress, physical harm, or unforeseen events caused by reliance on the countdown timer.")
+                            
+                            TermsSection(title: "5. Updates and Modifications",
+                                       content: "The developers reserve the right to update these terms and the App's functionality at any time without prior notice, and continued use of the App constitutes acceptance of such changes.")
+                            
+                            TermsSection(title: "6. Legal Disclaimer",
+                                       content: "By downloading the App, you enter into this agreement willingly and accept all potential risks associated with its use.")
+                            
+                            TermsSection(title: "7. Contact Information",
+                                       content: "For inquiries or concerns, please contact...")
+                        }
                     }
                     .padding(.horizontal)
                 }
@@ -300,38 +359,55 @@ struct FullScreenTermsView: View {
                             .foregroundColor(Color.black)
                             .multilineTextAlignment(.center)
                             .padding()
+                            .frame(maxWidth: .infinity)
                         
                         HStack(spacing: 16) {
-                            Button("Cancel") {
+                            Button(action: {}) {
+                                Text("Cancel")
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundColor(isCancelPressed ? .white : .red)
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(isCancelPressed ? Color.red : Color.white)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                             }
-                            .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(Color.red)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                            .pressEvents {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    isCancelPressed = true
+                                }
+                            } onRelease: {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    isCancelPressed = false
+                                }
+                            }
 
-                            Button("Accept") {
+                            Button(action: {
                                 onAccept()
                                 isVisible = false
+                            }) {
+                                Text("Accept")
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundColor(isAcceptPressed ? .white : .green)
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(isAcceptPressed ? Color.green : Color.white)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
                             }
-                            .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(Color.green)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(8)
-                            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                            .pressEvents {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    isAcceptPressed = true
+                                }
+                            } onRelease: {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    isAcceptPressed = false
+                                }
+                            }
                         }
                     }
                     .padding()
                     .background(Color.white)
-                    .cornerRadius(12)
-                    .shadow(radius: 10)
-                    .padding(.horizontal, 0)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .transition(.scale)
+                    .cornerRadius(8)
+                    .padding(.horizontal, 8)
                 }
                 .transition(.opacity)
                 .animation(.spring(), value: isVisible)
@@ -346,6 +422,74 @@ struct FullScreenTermsView: View {
         .animation(.spring(), value: isVisible)
     }
 }
+
+
+
+
+
+
+
+
+struct TermsSection: View {
+    let title: String
+    let content: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.headline)
+                .fontWeight(.semibold)
+                .foregroundColor(.black)
+            
+            Text(content)
+                .font(.body)
+                .foregroundColor(.black)
+        }
+    }
+}
+
+
+
+
+
+
+
+
+struct PressActionsModifier: ViewModifier {
+    var onPress: () -> Void
+    var onRelease: () -> Void
+    
+    func body(content: Content) -> some View {
+        content
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in
+                        onPress()
+                    }
+                    .onEnded { _ in
+                        onRelease()
+                    }
+            )
+    }
+}
+
+extension View {
+    func pressEvents(onPress: @escaping (() -> Void), onRelease: @escaping (() -> Void)) -> some View {
+        modifier(PressActionsModifier(onPress: onPress, onRelease: onRelease))
+    }
+}
+
+
+extension View {
+    func hideHomeIndicator() -> some View {
+        if #available(iOS 16.0, *) {
+            return self.persistentSystemOverlays(.hidden)
+        } else {
+            return self
+        }
+    }
+}
+
 
 extension TimeInterval {
     func convertToYears() -> Int { Int(self) / (365 * 24 * 60 * 60) }
