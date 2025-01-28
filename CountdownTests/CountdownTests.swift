@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CountdownView: View {
-    @State private var timeRemaining = TimeInterval(141928800) // example time in seconds
+    @State private var timeRemaining = TimeInterval(141928800)
     @State private var timer: Timer?
 
     var body: some View {
-        VStack(spacing: 16) { // Spacing between each unit
+        VStack(spacing: 16) { 
             // Years
             CountdownUnitView(value: timeRemaining.convertToYears(), label: "YRS", color: .white)
 
@@ -35,7 +35,7 @@ struct CountdownView: View {
         }
     }
 
-    // Start timer to update countdown
+    
     private func startTimer() {
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
