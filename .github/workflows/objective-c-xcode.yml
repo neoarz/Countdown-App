@@ -21,17 +21,24 @@ jobs:
         with:
           xcode-version: '15.2'
 
-      - name: Install Dependencies
+      - name: Install xcpretty
+        run: gem install xcpretty
+
+      - name: Verify Project Structure
         run: |
-          gem install xcpretty
-          xcodebuild -resolvePackageDependencies
+          echo "Project contents:"
+          ls -la
+          echo "\nXcode project contents:"
+          ls -la Countdown.xcodeproj/
+          echo "\nProject.pbxproj contents:"
+          cat Countdown.xcodeproj/project.pbxproj
 
       - name: Create Build Directory
         run: mkdir -p build
 
       - name: Build Archive
         run: |
-          xcodebuild archive \
+          xcodebuild clean archive \
             -project Countdown.xcodeproj \
             -scheme Countdown \
             -configuration Release \
@@ -47,7 +54,7 @@ jobs:
             PROVISIONING_PROFILE="" \
             GCC_OPTIMIZATION_LEVEL=0 \
             SWIFT_OPTIMIZATION_LEVEL="-Onone" \
-            | xcpretty
+            | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Generate Export Options
         run: |
@@ -82,7 +89,7 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             DEVELOPMENT_TEAM="" \
-            | xcpretty
+            | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
