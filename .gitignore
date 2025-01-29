@@ -10,13 +10,10 @@ xcuserdata/
 build/
 DerivedData/
 
-# User-specific files
+
 *.xcuserdatad
 *.xcuserstate
 *.moved-aside
 *.xccheckout
 *.hmap
-*.ipa
 
-# Swift Package Manager
-.build/
