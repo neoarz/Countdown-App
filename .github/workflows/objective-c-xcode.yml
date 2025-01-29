@@ -24,17 +24,67 @@ jobs:
       - name: Install xcpretty
         run: gem install xcpretty
 
-      - name: Show Project Structure
+      - name: Diagnose Project File
         run: |
-          echo "Project contents:"
-          ls -la
-          echo "\nXcode project contents:"
-          ls -la Countdown.xcodeproj/
+          echo "Project file contents:"
+          cat Countdown.xcodeproj/project.pbxproj
+          
+          echo "\nChecking for common issues..."
+          if ! grep -q "rootObject =" Countdown.xcodeproj/project.pbxproj; then
+            echo "Error: Missing rootObject"
+          fi
+          
+          if ! grep -q "isa = PBXProject;" Countdown.xcodeproj/project.pbxproj; then
+            echo "Error: Missing PBXProject declaration"
+          fi
+
+      - name: Attempt Project File Fix
+        run: |
+          cd Countdown.xcodeproj
+          # Backup original file
+          cp project.pbxproj project.pbxproj.backup
+          
+          # Fix common issues
+          sed -i '' '1i\
+          // !$*UTF8*$!
+          ' project.pbxproj
+          
+          # Ensure PBXProject section exists
+          if ! grep -q "isa = PBXProject;" project.pbxproj; then
+            sed -i '' '/^[[:space:]]*{/a\
+            \tisa = PBXProject;
+            ' project.pbxproj
+          fi
+          
+          # Add missing isa declarations
+          sed -i '' 's/^\([[:space:]]*\){[[:space:]]*$/\1{ isa = PBXBuildFile;/g' project.pbxproj
+          
+          echo "Modified project file contents:"
+          cat project.pbxproj
+
+      - name: Verify Xcode Project
+        run: |
+          xcodebuild -list -project Countdown.xcodeproj || {
+            echo "Project verification failed. Uploading project file for inspection."
+            mkdir -p artifacts
+            cp -r Countdown.xcodeproj artifacts/
+            exit 1
+          }
+
+      - name: Upload Project File for Inspection
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcode-project
+          path: artifacts/
+          retention-days: 1
 
       - name: Create Build Directory
+        if: success()
         run: mkdir -p build
 
       - name: Build for iOS
+        if: success()
         run: |
           xcodebuild clean build \
             -project Countdown.xcodeproj \
@@ -51,27 +101,19 @@ jobs:
             | xcpretty && exit ${PIPESTATUS[0]}
 
       - name: Create IPA Structure
+        if: success()
         run: |
           mkdir -p build/Payload
           cp -r build/DerivedData/Build/Products/Release-iphoneos/Countdown.app build/Payload/
           cd build && zip -r Countdown.ipa Payload
 
       - name: Upload IPA
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: Countdown-unsigned
           path: build/Countdown.ipa
           retention-days: 7
-
-      - name: Upload Build Logs
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-logs
-          path: |
-            build/DerivedData/**/*.log
-            *.log
-          retention-days: 1
 
       - name: Clean Up
         if: always()
