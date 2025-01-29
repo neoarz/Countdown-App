@@ -3,8 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 63;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		21A7CA9D2D1C7AC1000D3CAA /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CA9C2D1C7AC1000D3CAA /* CountdownApp.swift */; };
+		21A7CA9F2D1C7AC1000D3CAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */; };
+		21A7CAA12D1C7AC3000D3CAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */; };
+		21A7CAA42D1C7AC3000D3CAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAA32D1C7AC3000D3CAA /* Preview Assets.xcassets */; };
+		21A7CAAD2D1C7AC3000D3CAA /* CountdownTests in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAAC2D1C7AC3000D3CAA /* CountdownTests */; };
+		21A7CAB72D1C7AC3000D3CAA /* CountdownUITests in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB62D1C7AC3000D3CAA /* CountdownUITests */; };
+		21A7CAB92D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */; };
+		21A7CAF12D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAF02D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		21A7CAAA2D1C7AC3000D3CAA /* PBXContainerItemProxy */ = {
@@ -23,31 +34,16 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXBuildFile section */
-		21A7CA9D2D1C7AC1000D3CAA /* CountdownApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CA9C2D1C7AC1000D3CAA /* CountdownApp.swift */; };
-		21A7CA9F2D1C7AC1000D3CAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */; };
-		21A7CAA12D1C7AC3000D3CAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */; };
-		21A7CAA42D1C7AC3000D3CAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAA32D1C7AC3000D3CAA /* Preview Assets.xcassets */; };
-		21A7CA9D2D1C7AC1000D3CAB /* countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CA9C2D1C7AC1000D3CAB /* countdown.mp3 */; };
-		21A7CA9D2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CA9C2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 */; };
-		21A7CAAD2D1C7AC3000D3CAA /* CountdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAAC2D1C7AC3000D3CAA /* CountdownTests.swift */; };
-		21A7CAB72D1C7AC3000D3CAA /* CountdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB62D1C7AC3000D3CAA /* CountdownUITests.swift */; };
-		21A7CAB92D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		21A7CA992D1C7AC1000D3CAA /* Countdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Countdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		21A7CAA92D1C7AC3000D3CAA /* CountdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21A7CAB32D1C7AC3000D3CAA /* CountdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A7CA9C2D1C7AC1000D3CAA /* CountdownApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownApp.swift; sourceTree = "<group>"; };
 		21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21A7CAA32D1C7AC3000D3CAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		21A7CA9C2D1C7AC1000D3CAB /* countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = countdown.mp3; sourceTree = "<group>"; };
-		21A7CA9C2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CountdownSoundEffect.mp3; sourceTree = "<group>"; };
-		21A7CAAC2D1C7AC3000D3CAA /* CountdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTests.swift; sourceTree = "<group>"; };
-		21A7CAB62D1C7AC3000D3CAA /* CountdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownUITests.swift; sourceTree = "<group>"; };
+		21A7CAA92D1C7AC3000D3CAA /* CountdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21A7CAB32D1C7AC3000D3CAA /* CountdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		21A7CAF02D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CountdownSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -77,8 +73,7 @@
 				21A7CA9C2D1C7AC1000D3CAA /* CountdownApp.swift */,
 				21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */,
 				21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */,
-				21A7CA9C2D1C7AC1000D3CAB /* countdown.mp3 */,
-				21A7CA9C2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 */,
+				21A7CAF02D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 */,
 				21A7CAA22D1C7AC3000D3CAA /* Preview Content */,
 			);
 			path = Countdown;
@@ -95,7 +90,6 @@
 		21A7CAAC2D1C7AC3000D3CAA /* CountdownTests */ = {
 			isa = PBXGroup;
 			children = (
-				21A7CAAC2D1C7AC3000D3CAA /* CountdownTests.swift */,
 			);
 			path = CountdownTests;
 			sourceTree = "<group>";
@@ -103,7 +97,6 @@
 		21A7CAB62D1C7AC3000D3CAA /* CountdownUITests */ = {
 			isa = PBXGroup;
 			children = (
-				21A7CAB62D1C7AC3000D3CAA /* CountdownUITests.swift */,
 				21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */,
 			);
 			path = CountdownUITests;
@@ -117,7 +110,6 @@
 			buildConfigurationList = 21A7CABD2D1C7AC3000D3CAA /* Build configuration list for PBXNativeTarget "Countdown" */;
 			buildPhases = (
 				21A7CA952D1C7AC1000D3CAA /* Sources */,
-				21A7CA962D1C7AC1000D3CAA /* Frameworks */,
 				21A7CA972D1C7AC1000D3CAA /* Resources */,
 			);
 			buildRules = (
@@ -139,7 +131,6 @@
 			buildConfigurationList = 21A7CAC02D1C7AC3000D3CAA /* Build configuration list for PBXNativeTarget "CountdownTests" */;
 			buildPhases = (
 				21A7CAA52D1C7AC3000D3CAA /* Sources */,
-				21A7CAA62D1C7AC3000D3CAA /* Frameworks */,
 				21A7CAA72D1C7AC3000D3CAA /* Resources */,
 			);
 			buildRules = (
@@ -162,7 +153,6 @@
 			buildConfigurationList = 21A7CAC32D1C7AC3000D3CAA /* Build configuration list for PBXNativeTarget "CountdownUITests" */;
 			buildPhases = (
 				21A7CAAF2D1C7AC3000D3CAA /* Sources */,
-				21A7CAB02D1C7AC3000D3CAA /* Frameworks */,
 				21A7CAB12D1C7AC3000D3CAA /* Resources */,
 			);
 			buildRules = (
@@ -231,6 +221,7 @@
 			files = (
 				21A7CAA42D1C7AC3000D3CAA /* Preview Assets.xcassets in Resources */,
 				21A7CAA12D1C7AC3000D3CAA /* Assets.xcassets in Resources */,
+				21A7CAF12D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21A7CAAD2D1C7AC3000D3CAA /* CountdownTests.swift in Sources */,
+				21A7CAAD2D1C7AC3000D3CAA /* CountdownTests in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21A7CAB72D1C7AC3000D3CAA /* CountdownUITests.swift in Sources */,
+				21A7CAB72D1C7AC3000D3CAA /* CountdownUITests in Sources */,
 				21A7CAB92D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

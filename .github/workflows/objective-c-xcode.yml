@@ -84,21 +84,22 @@ jobs:
         run: mkdir -p build
 
       - name: Build for iOS
-        if: success()
         run: |
-          xcodebuild clean build \
+          xcodebuild clean archive \
             -project Countdown.xcodeproj \
             -scheme Countdown \
             -configuration Release \
-            -sdk iphoneos \
-            -derivedDataPath build/DerivedData \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
+            -archivePath build/Countdown.xcarchive \
+            -destination 'generic/platform=iOS' \
             CODE_SIGN_IDENTITY="" \
-            CODE_SIGN_STYLE=Manual \
-            DEVELOPMENT_TEAM="" \
-            ONLY_ACTIVE_ARCH=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
             | xcpretty && exit ${PIPESTATUS[0]}
+            
+      # Add this step to verify sound files are in the bundle
+      - name: Verify Resource Files
+        run: |
+          find build/Countdown.xcarchive -name "*.mp3"
 
       - name: Create IPA Structure
         if: success()

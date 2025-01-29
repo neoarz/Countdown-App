@@ -202,18 +202,28 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
     var audioPlayer: AVAudioPlayer?
     
     func playSound() {
+        // If already playing, don't interrupt
+        if audioPlayer?.isPlaying == true {
+            return
+        }
+        
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
-            try AVAudioSession.sharedInstance().setActive(true)
+            let audioSession = AVAudioSession.sharedInstance()
+            try audioSession.setCategory(.playback)
+            try audioSession.setActive(true)
             
-            if let soundURL = Bundle.main.url(forResource: "CountdownSoundEffect", withExtension: "mp3") {
-                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            if let path = Bundle.main.path(forResource: "CountdownSoundEffect", ofType: "mp3") {
+                let url = URL(fileURLWithPath: path)
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
                 audioPlayer?.delegate = self
-                audioPlayer?.prepareToPlay()
-                audioPlayer?.play()
+                audioPlayer?.volume = 1.0
+                audioPlayer?.numberOfLoops = 0
+                if audioPlayer?.prepareToPlay() == true {
+                    audioPlayer?.play()
+                }
             }
         } catch {
-            print("Error setting up audio: \(error.localizedDescription)")
+            print("Error playing sound: \(error)")
         }
     }
     
@@ -243,7 +253,7 @@ struct NotificationView: View {
                     Text("Countdown")
                         .font(.headline)
                         .foregroundColor(.black)
-                    Text("User Agreement broken")
+                    Text("User Agreement Broken")
                         .font(.subheadline)
                         .foregroundColor(.black)
                 }
