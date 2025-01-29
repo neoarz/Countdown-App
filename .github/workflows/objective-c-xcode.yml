@@ -1,0 +1,57 @@
+name: Build Unsigned IPA
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v2
+        with:
+          xcode-version: '14'
+          
+      - name: Build App Archive
+        run: |
+          xcodebuild clean archive \
+          -project Countdown.xcodeproj \
+          -scheme Countdown \
+          -configuration Release \
+          -archivePath $PWD/build/Countdown.xcarchive \
+          CODE_SIGNING_ALLOWED=NO
+          
+      - name: Create Export Options Plist
+        run: |
+          cat > ExportOptions.plist << EOL
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>method</key>
+              <string>development</string>
+              <key>compileBitcode</key>
+              <false/>
+              <key>signingStyle</key>
+              <string>manual</string>
+          </dict>
+          </plist>
+          EOL
+          
+      - name: Create Unsigned IPA
+        run: |
+          mkdir -p build/Countdown
+          xcodebuild -exportArchive \
+          -archivePath $PWD/build/Countdown.xcarchive \
+          -exportPath $PWD/build/Countdown \
+          -exportOptionsPlist ExportOptions.plist \
+          CODE_SIGNING_ALLOWED=NO
+          
+      - name: Upload IPA as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Countdown.ipa
+          path: build/Countdown/Countdown.ipa
