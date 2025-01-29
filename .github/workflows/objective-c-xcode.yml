@@ -1,4 +1,4 @@
-name: Build Unsigned IPA
+name: Build IPA
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Set Default Scheme
         run: |
@@ -45,7 +45,8 @@ jobs:
           rm -rf Payload
 
       - name: Upload IPA
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Countdown.ipa
           path: Countdown.ipa
+          retention-days: 90
