@@ -13,7 +13,7 @@ jobs:
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.4'
+          xcode-version: '16.2'
           
       - name: Build App Archive
         run: |
@@ -22,7 +22,10 @@ jobs:
           -scheme Countdown \
           -configuration Release \
           -archivePath $PWD/build/Countdown.xcarchive \
-          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_ALLOWED=NO \
+          DEVELOPMENT_TEAM="" \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
           
       - name: Create Export Options Plist
         run: |
@@ -37,6 +40,10 @@ jobs:
               <false/>
               <key>signingStyle</key>
               <string>manual</string>
+              <key>teamID</key>
+              <string></string>
+              <key>provisioningProfiles</key>
+              <dict/>
           </dict>
           </plist>
           EOL
@@ -48,7 +55,10 @@ jobs:
           -archivePath $PWD/build/Countdown.xcarchive \
           -exportPath $PWD/build/Countdown \
           -exportOptionsPlist ExportOptions.plist \
-          CODE_SIGNING_ALLOWED=NO
+          CODE_SIGNING_ALLOWED=NO \
+          DEVELOPMENT_TEAM="" \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO
           
       - name: Upload IPA as Artifact
         uses: actions/upload-artifact@v3
