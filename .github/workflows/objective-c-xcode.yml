@@ -106,16 +106,18 @@ jobs:
           mkdir -p build/Payload
           cp -r build/DerivedData/Build/Products/Release-iphoneos/Countdown.app build/Payload/
           cd build && zip -r Countdown.ipa Payload
+          mv Countdown.ipa ../Countdown.ipa
 
       - name: Upload IPA
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: Countdown-unsigned
-          path: build/Countdown.ipa
+          name: Countdown
+          path: Countdown.ipa
           retention-days: 7
 
       - name: Clean Up
         if: always()
         run: |
           rm -rf build/
+          rm -f Countdown.ipa
