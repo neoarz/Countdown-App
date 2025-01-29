@@ -24,79 +24,54 @@ jobs:
       - name: Install xcpretty
         run: gem install xcpretty
 
-      - name: Verify Project Structure
+      - name: Show Project Structure
         run: |
           echo "Project contents:"
           ls -la
           echo "\nXcode project contents:"
           ls -la Countdown.xcodeproj/
-          echo "\nProject.pbxproj contents:"
-          cat Countdown.xcodeproj/project.pbxproj
 
       - name: Create Build Directory
         run: mkdir -p build
 
-      - name: Build Archive
+      - name: Build for iOS
         run: |
-          xcodebuild clean archive \
+          xcodebuild clean build \
             -project Countdown.xcodeproj \
             -scheme Countdown \
             -configuration Release \
-            -archivePath build/Countdown.xcarchive \
             -sdk iphoneos \
-            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/DerivedData \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGN_STYLE=Manual \
             DEVELOPMENT_TEAM="" \
-            PROVISIONING_PROFILE_SPECIFIER="" \
-            PROVISIONING_PROFILE="" \
-            GCC_OPTIMIZATION_LEVEL=0 \
-            SWIFT_OPTIMIZATION_LEVEL="-Onone" \
+            ONLY_ACTIVE_ARCH=NO \
             | xcpretty && exit ${PIPESTATUS[0]}
 
-      - name: Generate Export Options
+      - name: Create IPA Structure
         run: |
-          cat > build/ExportOptions.plist << EOL
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>method</key>
-              <string>ad-hoc</string>
-              <key>compileBitcode</key>
-              <false/>
-              <key>signingStyle</key>
-              <string>manual</string>
-              <key>stripSwiftSymbols</key>
-              <true/>
-              <key>teamID</key>
-              <string></string>
-              <key>provisioningProfiles</key>
-              <dict/>
-          </dict>
-          </plist>
-          EOL
-
-      - name: Export IPA
-        run: |
-          xcodebuild -exportArchive \
-            -archivePath build/Countdown.xcarchive \
-            -exportPath build/Countdown \
-            -exportOptionsPlist build/ExportOptions.plist \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            DEVELOPMENT_TEAM="" \
-            | xcpretty && exit ${PIPESTATUS[0]}
+          mkdir -p build/Payload
+          cp -r build/DerivedData/Build/Products/Release-iphoneos/Countdown.app build/Payload/
+          cd build && zip -r Countdown.ipa Payload
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
           name: Countdown-unsigned
-          path: build/Countdown/Countdown.ipa
+          path: build/Countdown.ipa
           retention-days: 7
+
+      - name: Upload Build Logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            build/DerivedData/**/*.log
+            *.log
+          retention-days: 1
 
       - name: Clean Up
         if: always()
