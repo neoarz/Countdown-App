@@ -28,6 +28,11 @@
 		21A7CA9F2D1C7AC1000D3CAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */; };
 		21A7CAA12D1C7AC3000D3CAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */; };
 		21A7CAA42D1C7AC3000D3CAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAA32D1C7AC3000D3CAA /* Preview Assets.xcassets */; };
+		21A7CA9D2D1C7AC1000D3CAB /* countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CA9C2D1C7AC1000D3CAB /* countdown.mp3 */; };
+		21A7CA9D2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CA9C2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 */; };
+		21A7CAAD2D1C7AC3000D3CAA /* CountdownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAAC2D1C7AC3000D3CAA /* CountdownTests.swift */; };
+		21A7CAB72D1C7AC3000D3CAA /* CountdownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB62D1C7AC3000D3CAA /* CountdownUITests.swift */; };
+		21A7CAB92D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21A7CAA32D1C7AC3000D3CAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		21A7CA9C2D1C7AC1000D3CAB /* countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = countdown.mp3; sourceTree = "<group>"; };
+		21A7CA9C2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CountdownSoundEffect.mp3; sourceTree = "<group>"; };
+		21A7CAAC2D1C7AC3000D3CAA /* CountdownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTests.swift; sourceTree = "<group>"; };
+		21A7CAB62D1C7AC3000D3CAA /* CountdownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownUITests.swift; sourceTree = "<group>"; };
+		21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -67,6 +77,8 @@
 				21A7CA9C2D1C7AC1000D3CAA /* CountdownApp.swift */,
 				21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */,
 				21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */,
+				21A7CA9C2D1C7AC1000D3CAB /* countdown.mp3 */,
+				21A7CA9C2D1C7AC1000D3CAC /* CountdownSoundEffect.mp3 */,
 				21A7CAA22D1C7AC3000D3CAA /* Preview Content */,
 			);
 			path = Countdown;
@@ -83,6 +95,7 @@
 		21A7CAAC2D1C7AC3000D3CAA /* CountdownTests */ = {
 			isa = PBXGroup;
 			children = (
+				21A7CAAC2D1C7AC3000D3CAA /* CountdownTests.swift */,
 			);
 			path = CountdownTests;
 			sourceTree = "<group>";
@@ -90,6 +103,8 @@
 		21A7CAB62D1C7AC3000D3CAA /* CountdownUITests */ = {
 			isa = PBXGroup;
 			children = (
+				21A7CAB62D1C7AC3000D3CAA /* CountdownUITests.swift */,
+				21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */,
 			);
 			path = CountdownUITests;
 			sourceTree = "<group>";
@@ -249,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A7CAAD2D1C7AC3000D3CAA /* CountdownTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +272,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A7CAB72D1C7AC3000D3CAA /* CountdownUITests.swift in Sources */,
+				21A7CAB92D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

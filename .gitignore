@@ -1,4 +1,5 @@
 # Xcode
+#
 .DS_Store
 xcuserdata/
 *.xcodeproj/*
@@ -6,7 +7,16 @@ xcuserdata/
 !*.xcodeproj/xcshareddata/
 !*.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
-**/xcshareddata/WorkspaceSettings.xcsettings
 build/
 DerivedData/
+
+# User-specific files
 *.xcuserdatad
+*.xcuserstate
+*.moved-aside
+*.xccheckout
+*.hmap
+*.ipa
+
+# Swift Package Manager
+.build/
