@@ -3,6 +3,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/neoarz/Countdown-App?include_prereleases)](https://github.com/neoarz/Countdown-App/releases)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/neoarz/Countdown-App/pulls)
 [![GitHub License](https://img.shields.io/github/license/neoarz/Countdown-App?color=%23C96FAD&cache=none)](https://github.com/neoarz/Countdown-App/blob/main/LICENSE)
+[![GitHub All Releases](https://img.shields.io/github/downloads/neoarz/Countdown-App/total)](https://github.com/neoarz/Countdown-App/releases)
 
 
 
