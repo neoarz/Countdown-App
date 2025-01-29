@@ -27,6 +27,8 @@ jobs:
           -archivePath $PWD/build/Countdown.xcarchive \
           -sdk iphoneos \
           -destination 'generic/platform=iOS' \
+          SWIFT_OPTIMIZATION_LEVEL="-Onone" \
+          ENABLE_PREVIEWS=NO \
           CODE_SIGNING_ALLOWED=NO \
           DEVELOPMENT_TEAM="" \
           CODE_SIGN_IDENTITY="" \
@@ -54,6 +56,8 @@ jobs:
               <string>export</string>
               <key>stripSwiftSymbols</key>
               <true/>
+              <key>iCloudContainerEnvironment</key>
+              <string>Development</string>
           </dict>
           </plist>
           EOL
@@ -65,6 +69,8 @@ jobs:
           -archivePath $PWD/build/Countdown.xcarchive \
           -exportPath $PWD/build/Countdown \
           -exportOptionsPlist ExportOptions.plist \
+          SWIFT_OPTIMIZATION_LEVEL="-Onone" \
+          ENABLE_PREVIEWS=NO \
           CODE_SIGNING_ALLOWED=NO \
           DEVELOPMENT_TEAM="" \
           CODE_SIGN_IDENTITY="" \
