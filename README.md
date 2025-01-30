@@ -41,10 +41,10 @@ This app is purely for entertainment purposes and is not intended to predict or 
 
 ## Usage
 
-1. **Launch the App**: Open the app on your iPhone. Full iPad support will come soon 
+1. **Launch the App**: Open the app on your iPhone, or iPad.
 2. **Receive Your Timer**: The app will assign you a random countdown.
 3. **Experience the Thrill**: Watch as the timer ticks down and feel the suspense.
-4. **Challenge Your Friends**: Share your timer and dare them to see what they get.
+4. **Challenge Your Friends**: Share your timer with friends and see what time they get.
 
 ---
    
