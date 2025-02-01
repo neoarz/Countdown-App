@@ -4,6 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/neoarz/Countdown-App/pulls)
 [![GitHub License](https://img.shields.io/github/license/neoarz/Countdown-App?color=%23C96FAD&cache=none)](https://github.com/neoarz/Countdown-App/blob/main/LICENSE)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/neoarz/Countdown-App/total)
+![Build Status](https://github.com/neoarz/Countdown-App/actions/workflows/objective-c-xcode.yml/badge.svg)
 
 
 
