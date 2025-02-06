@@ -10,7 +10,6 @@ xcuserdata/
 build/
 DerivedData/
 
-
 *.xcuserdatad
 *.xcuserstate
 *.moved-aside
