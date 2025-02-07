@@ -10,7 +10,11 @@ struct VideoPlayerView: View {
             VideoPlayer(player: AVPlayer(url: url).apply { player in
                 player.play()
             })
-                .edgesIgnoringSafeArea(.all)
+                overlay(
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .allowsHitTesting(true)
+                )
         } else {
             Text("Video not found")
         }
