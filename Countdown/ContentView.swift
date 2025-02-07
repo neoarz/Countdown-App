@@ -211,6 +211,7 @@ struct TimeUnitRow: View {
                     Text(String(format: value >= 100 ? "%03d" : "%02d", value))
                         .font(.system(size: isIPad ? 115 * scale : 115 * scale, weight: .bold))
                         .foregroundColor(color)
+                        .monospacedDigit()
                         .frame(minWidth: isIPad ? geometry.size.width * 0.3 : 0, alignment: .trailing)
                         .layoutPriority(1)
                     
