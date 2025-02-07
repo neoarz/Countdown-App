@@ -31,6 +31,8 @@ struct VideoPlayerView: View {
                         .contentShape(Rectangle())
                         .allowsHitTesting(true)
                 )
+                .allowsHitTesting(false)
+                .edgesIgnoringSafeArea(.all)
             } else {
                 Text("Video not found")
             }
