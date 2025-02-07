@@ -15,6 +15,7 @@
 		21A7CAB72D1C7AC3000D3CAA /* CountdownUITests in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB62D1C7AC3000D3CAA /* CountdownUITests */; };
 		21A7CAB92D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */; };
 		21A7CAF12D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAF02D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 */; };
+		21A7CAF52D1C7AC3000D3CAA /* CountdownLoad.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 21A7CAF62D1C7AC3000D3CAA /* CountdownLoad.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		21A7CAB32D1C7AC3000D3CAA /* CountdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A7CAB82D1C7AC3000D3CAA /* CountdownUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		21A7CAF02D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CountdownSoundEffect.mp3; sourceTree = "<group>"; };
+		21A7CAF32D1C7AC3000D3CAA /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		21A7CAF62D1C7AC3000D3CAA /* CountdownLoad.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = CountdownLoad.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -72,8 +75,10 @@
 			children = (
 				21A7CA9C2D1C7AC1000D3CAA /* CountdownApp.swift */,
 				21A7CA9E2D1C7AC1000D3CAA /* ContentView.swift */,
+				21A7CAF32D1C7AC3000D3CAA /* VideoPlayerView.swift */,
 				21A7CAA02D1C7AC3000D3CAA /* Assets.xcassets */,
 				21A7CAF02D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 */,
+				21A7CAF62D1C7AC3000D3CAA /* CountdownLoad.mp4 */,
 				21A7CAA22D1C7AC3000D3CAA /* Preview Content */,
 			);
 			path = Countdown;
@@ -222,6 +227,7 @@
 				21A7CAA42D1C7AC3000D3CAA /* Preview Assets.xcassets in Resources */,
 				21A7CAA12D1C7AC3000D3CAA /* Assets.xcassets in Resources */,
 				21A7CAF12D1C7AC3000D3CAA /* CountdownSoundEffect.mp3 in Resources */,
+				21A7CAF52D1C7AC3000D3CAA /* CountdownLoad.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +436,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.neo.countdown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neo.countdown5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -448,7 +454,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Countdown/Preview Content\"";
-				DEVELOPMENT_TEAM = 9WY43R4CSV;
+				DEVELOPMENT_TEAM = VX8YZ985HJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Countdown;
@@ -466,7 +472,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.neo.countdown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.neo.countdown5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
