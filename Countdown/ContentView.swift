@@ -13,7 +13,7 @@ struct VideoPlayerView: View {
                 let url = URL(fileURLWithPath: path)
                 VideoPlayer(player: AVPlayer(url: url).apply { player in
                     player.play()
-                    // Loop the video
+                    
                     NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
                                                          object: player.currentItem, queue: .main) { _ in
                         player.seek(to: .zero)
@@ -211,7 +211,6 @@ struct TimeUnitRow: View {
                     Text(String(format: value >= 100 ? "%03d" : "%02d", value))
                         .font(.system(size: isIPad ? 115 * scale : 115 * scale, weight: .bold))
                         .foregroundColor(color)
-                        .scaleEffect(y: 1.02)
                         .frame(minWidth: isIPad ? geometry.size.width * 0.3 : 0, alignment: .trailing)
                         .layoutPriority(1)
                     
@@ -241,7 +240,6 @@ class SoundManager: NSObject, AVAudioPlayerDelegate {
     var audioPlayer: AVAudioPlayer?
     
     func playSound() {
-        // If already playing, don't interrupt
         if audioPlayer?.isPlaying == true {
             return
         }
@@ -343,7 +341,6 @@ struct FullScreenTermsView: View {
                 VideoPlayerView(videoName: "CountdownLoad")
                     .transition(.opacity)
                     .onAppear {
-                        // Video is 1.4 seconds long
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
                             withAnimation {
                                 showVideo = false
