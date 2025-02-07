@@ -1,10 +1,49 @@
 import SwiftUI
 import AVFoundation
 import UIKit
+import AVKit
 
+struct VideoPlayerView: View {
+    let videoName: String
+    
+    var body: some View {
+        ZStack {
+            Color.black.edgesIgnoringSafeArea(.all)
+            if let path = Bundle.main.path(forResource: "CountdownLoad", ofType: "mp4") {
+                let url = URL(fileURLWithPath: path)
+                VideoPlayer(player: AVPlayer(url: url).apply { player in
+                    player.play()
+                    // Loop the video
+                    NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                                         object: player.currentItem, queue: .main) { _ in
+                        player.seek(to: .zero)
+                        player.play()
+                    }
+                })
 
+                .frame(width: UIScreen.main.bounds.width * 0.64,    
+                      height: UIScreen.main.bounds.height * 0.24)   
+                .cornerRadius(12)                                  
+                .shadow(radius: 10)       
+                .offset(y: -UIScreen.main.bounds.height * 0.02)            
+                .overlay(
+                    Color.clear
+                        .contentShape(Rectangle())
+                        .allowsHitTesting(true)
+                )
+            } else {
+                Text("Video not found")
+            }
+        }
+    }
+}
 
-
+extension AVPlayer {
+    func apply(_ closure: (AVPlayer) -> Void) -> AVPlayer {
+        closure(self)
+        return self
+    }
+}
 
 struct CountdownView: View {
     @State private var timeRemaining: TimeInterval
@@ -170,9 +209,9 @@ struct TimeUnitRow: View {
                     }
                     
                     Text(String(format: value >= 100 ? "%03d" : "%02d", value))
-                        .font(.system(size: isIPad ? 95 * scale : 105 * scale, weight: .bold))
+                        .font(.system(size: isIPad ? 115 * scale : 115 * scale, weight: .bold))
                         .foregroundColor(color)
-                        .monospacedDigit()
+                        .scaleEffect(y: 1.02)
                         .frame(minWidth: isIPad ? geometry.size.width * 0.3 : 0, alignment: .trailing)
                         .layoutPriority(1)
                     
@@ -183,7 +222,7 @@ struct TimeUnitRow: View {
                         .frame(width: geometry.size.width * (isIPad ? 0.15 : 0.2), alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, alignment: isIPad ? .center : .trailing)
-                .padding(.trailing, isIPad ? 0 : 55 * scale)
+                .padding(.trailing, isIPad ? 0 : 49 * scale)
                 .padding(.leading, isIPad ? 0 : 0)
             }
         }
@@ -292,12 +331,29 @@ struct FullScreenTermsView: View {
     @State private var showAcceptPopup: Bool = false
     @State private var isAcceptPressed: Bool = false
     @State private var isCancelPressed: Bool = false
+    @State private var showVideo: Bool = false
 
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+            if !showVideo {
+                Color.white.ignoresSafeArea()
+            }
             
-
+            if showVideo {
+                VideoPlayerView(videoName: "CountdownLoad")
+                    .transition(.opacity)
+                    .onAppear {
+                        // Video is 1.4 seconds long
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+                            withAnimation {
+                                showVideo = false
+                                isVisible = false
+                                onAccept()
+                            }
+                        }
+                    }
+            }
+            
             VStack(spacing: 24) {
                 Text("End User Agreement")
                     .font(.largeTitle)
@@ -356,8 +412,9 @@ struct FullScreenTermsView: View {
                 Spacer()
             }
             .background(Color.white)
+            .opacity(showVideo ? 0 : 1)
 
-            if showAcceptPopup {
+            if showAcceptPopup && !showVideo {
                 ZStack {
                     Color.black.opacity(0.4)
                         .ignoresSafeArea()
@@ -392,8 +449,7 @@ struct FullScreenTermsView: View {
                             }
 
                             Button(action: {
-                                onAccept()
-                                isVisible = false
+                                showVideo = true
                             }) {
                                 Text("Accept")
                                     .font(.system(size: 18, weight: .medium))
@@ -428,8 +484,11 @@ struct FullScreenTermsView: View {
                 showAcceptPopup = true
             }
         }
-        .transition(.opacity)
-        .animation(.spring(), value: isVisible)
+        .onChange(of: showVideo) { newValue in
+            if !newValue {
+                isVisible = false
+            }
+        }
     }
 }
 
