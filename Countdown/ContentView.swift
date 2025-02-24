@@ -40,6 +40,7 @@ struct VideoPlayerView: View {
     }
 }
 
+
 extension AVPlayer {
     func apply(_ closure: (AVPlayer) -> Void) -> AVPlayer {
         closure(self)
@@ -200,43 +201,41 @@ struct TimeUnitRow: View {
             let baseIPadWidth: CGFloat = 834
             let isIPad = UIDevice.current.userInterfaceIdiom == .pad
             
+            // iPhone scale remains exactly the same, only iPad scale is modified
             let scale: CGFloat = isIPad
-                ? max(1.3, geometry.size.width / baseIPadWidth * 1.5)
-                : geometry.size.width / baseWidth
+                ? max(1.4, geometry.size.width / baseIPadWidth * 1.4)
+                : geometry.size.width / baseWidth // Original iPhone scaling
             
             ZStack {
-                HStack(alignment: .center, spacing: 4 * scale) {
+                HStack(alignment: .center, spacing: 6 * scale) {
                     if !isIPad {
                         Spacer()
                     }
                     
                     Text(String(format: value >= 100 ? "%03d" : "%02d", value))
-                        .font(.system(size: isIPad ? 115 * scale : 115 * scale, weight: .bold))
+                        .font(.system(size: isIPad ? 120 * scale : 115 * scale, weight: .bold))
                         .foregroundColor(color)
                         .monospacedDigit()
-                        .frame(minWidth: isIPad ? geometry.size.width * 0.3 : 0, alignment: .trailing)
+                        .frame(minWidth: isIPad ? geometry.size.width * 0.35 : 0, alignment: .trailing)
                         .layoutPriority(1)
                     
                     Text(label)
-                        .font(.system(size: isIPad ? 28 * scale : 28 * scale, weight: .semibold))
+                        .font(.system(size: isIPad ? 32 * scale : 28 * scale, weight: .semibold))
                         .foregroundColor(color)
                         .padding(.top, isIPad ? 45 * scale : 55 * scale)
                         .frame(width: geometry.size.width * (isIPad ? 0.15 : 0.2), alignment: .leading)
                 }
                 .frame(maxWidth: .infinity, alignment: isIPad ? .center : .trailing)
-                .padding(.trailing, isIPad ? 0 : 49 * scale)
+                .padding(.trailing, isIPad ? 0 : 48 * scale)
                 .padding(.leading, isIPad ? 0 : 0)
             }
         }
         .frame(height: 100 * (UIDevice.current.userInterfaceIdiom == .pad
-            ? max(1.3, UIScreen.main.bounds.width / 834 * 1.5)
-            : UIScreen.main.bounds.width / 393))
+            ? max(1.4, UIScreen.main.bounds.width / 834 * 1.4)
+            : UIScreen.main.bounds.width / 393)) // Original iPhone height calculation
         .offset(y: -16 * min(max(UIScreen.main.bounds.width / 393, 0.8), 1.2))
     }
 }
-
-
-
 
 class SoundManager: NSObject, AVAudioPlayerDelegate {
     static let shared = SoundManager()
