@@ -201,10 +201,10 @@ struct TimeUnitRow: View {
             let baseIPadWidth: CGFloat = 834
             let isIPad = UIDevice.current.userInterfaceIdiom == .pad
             
-            // iPhone scale remains exactly the same, only iPad scale is modified
+          
             let scale: CGFloat = isIPad
                 ? max(1.4, geometry.size.width / baseIPadWidth * 1.4)
-                : geometry.size.width / baseWidth // Original iPhone scaling
+                : geometry.size.width / baseWidth
             
             ZStack {
                 HStack(alignment: .center, spacing: 6 * scale) {
