@@ -1,6 +1,6 @@
 //
-//  CountdownUITestsLaunchTests.swift
-//  CountdownUITests
+//  VideoPlayerView.swift
+//  VideoPlayerView
 //
 //  Created by neo on 12/25/24.
 //
