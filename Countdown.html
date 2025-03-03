@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown-App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background-color: black;
+        color: white;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .countdown-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 20px;
+      }
+
+      .time-unit-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100px;
+      }
+
+      .time-value {
+        font-size: 115px;
+        font-weight: bold;
+        font-variant-numeric: tabular-nums;
+        text-align: right;
+      }
+
+      .time-label {
+        font-size: 28px;
+        font-weight: 600;
+        padding-top: 55px;
+        margin-left: 6px;
+        width: 80px;
+        text-align: left;
+      }
+
+      .red {
+        color: rgba(128, 0, 0, 1);
+      }
+
+      /* Notification */
+      .notification {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 10;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .notification.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .notification-content {
+        background-color: white;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 16px;
+        display: flex;
+        width: 90%;
+        max-width: 400px;
+        margin-bottom: 100px;
+      }
+
+      .notification-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #333;
+        border-radius: 10px;
+        margin-right: 16px;
+      }
+
+      .notification-text {
+        color: black;
+      }
+
+      .notification-title {
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+
+      .terms-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        color: black;
+        overflow: hidden;
+        transition: opacity 0.3s ease;
+      }
+
+      .terms-header {
+        font-size: 28px;
+        font-weight: bold;
+        padding: 50px 20px 24px 20px;
+        text-align: left;
+      }
+
+      .terms-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 20px;
+      }
+
+      .terms-section {
+        margin-bottom: 20px;
+      }
+
+      .terms-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .terms-text {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .terms-section-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 20px 0 10px 0;
+      }
+
+      .confirm-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 30;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .confirm-popup.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .confirm-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+      }
+
+      .confirm-message {
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 16px;
+      }
+
+      .button-container {
+        display: flex;
+        gap: 16px;
+      }
+
+      .button {
+        flex: 1;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: 500;
+        background-color: white;
+        border: none;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.1s ease;
+      }
+
+      .button.cancel {
+        color: red;
+      }
+
+      .button.cancel:active {
+        background-color: red;
+        color: white;
+      }
+
+      .button.accept {
+        color: green;
+      }
+
+      .button.accept:active {
+        background-color: green;
+        color: white;
+      }
+
+      /* Video player */
+      .video-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 40;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .video-container.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      video {
+        width: 64%;
+        max-width: 600px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      @media (max-width: 600px) {
+        .time-value {
+          font-size: 80px;
+        }
+
+        .time-label {
+          font-size: 22px;
+          padding-top: 35px;
+        }
+
+        .time-unit-row {
+          height: 80px;
+        }
+
+        .countdown-container {
+          gap: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="countdown-container" id="countdown">
+      <div class="time-unit-row">
+        <div class="time-value" id="years">000</div>
+        <div class="time-label">YRS</div>
+      </div>
+      <div class="time-unit-row">
+        <div class="time-value" id="days">000</div>
+        <div class="time-label">DAY</div>
+      </div>
+      <div class="time-unit-row">
+        <div class="time-value" id="hours">00</div>
+        <div class="time-label">HRS</div>
+      </div>
+      <div class="time-unit-row">
+        <div class="time-value" id="minutes">00</div>
+        <div class="time-label">MIN</div>
+      </div>
+      <div class="time-unit-row">
+        <div class="time-value" id="seconds">00</div>
+        <div class="time-label">SEC</div>
+      </div>
+    </div>
+
+    <div class="notification" id="notification">
+      <div class="notification-content">
+        <div class="notification-icon"></div>
+        <div class="notification-text">
+          <div class="notification-title">Countdown</div>
+          <div class="notification-message">User Agreement Broken</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terms-container" id="terms">
+      <div class="terms-header">End User Agreement</div>
+      <div class="terms-content">
+        <div class="terms-section-title">Copyright</div>
+        <div class="terms-text">Copyright (c) Neo Fate Systems, LLC</div>
+
+        <div class="terms-section-title">Important Notice</div>
+        <div class="terms-text">
+          IMPORTANT: PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THIS
+          SOFTWARE.
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">1. Acceptance of Fate</div>
+          <div class="terms-text">
+            The countdown timer presented is final and binding, and the App is
+            not liable for any consequences resulting from the time displayed.
+          </div>
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">2. Irrevocability</div>
+          <div class="terms-text">
+            Once the countdown timer begins, it cannot be altered, reset, or
+            stopped, and attempts to tamper with it may result in undefined and
+            irreversible consequences.
+          </div>
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">3. Forbidden Actions</div>
+          <div class="terms-text">
+            You agree not to modify, reverse-engineer, or tamper with the App's
+            code or features, and you will not hold the developers liable for
+            any outcomes related to the timer, your life, and supernatural or
+            inexplicable occurrences linked to the App.
+          </div>
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">4. Limitation of Liability</div>
+          <div class="terms-text">
+            The creators and developers of the App are not responsible for
+            emotional distress, physical harm, or unforeseen events caused by
+            reliance on the countdown timer.
+          </div>
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">5. Updates and Modifications</div>
+          <div class="terms-text">
+            The developers reserve the right to update these terms and the App's
+            functionality at any time without prior notice, and continued use of
+            the App constitutes acceptance of such changes.
+          </div>
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">6. Legal Disclaimer</div>
+          <div class="terms-text">
+            By downloading the App, you enter into this agreement willingly and
+            accept all potential risks associated with its use.
+          </div>
+        </div>
+
+        <div class="terms-section">
+          <div class="terms-title">7. Contact Information</div>
+          <div class="terms-text">
+            For inquiries or concerns, please contact...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm-popup" id="confirm">
+      <div class="confirm-content">
+        <div class="confirm-message">
+          I have read the user agreement and accept the terms and conditions.
+        </div>
+        <div class="button-container">
+          <button class="button cancel" id="cancelButton">Cancel</button>
+          <button class="button accept" id="acceptButton">Accept</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-container" id="video">
+      <video id="loadVideo" muted>
+        <source
+          src="https://github.com/neoarz/Countdown-App/raw/refs/heads/main/Assets/CountdownLoad.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <audio id="notificationSound" preload="auto">
+      <source
+        src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_c518b1a67f.mp3?filename=pristine-609.mp3"
+        type="audio/mpeg"
+      />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+
+      const yearsEl = document.getElementById("years");
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+
+      const notificationEl = document.getElementById("notification");
+      const termsEl = document.getElementById("terms");
+      const confirmEl = document.getElementById("confirm");
+      const videoEl = document.getElementById("video");
+      const loadVideo = document.getElementById("loadVideo");
+      const notificationSound = document.getElementById("notificationSound");
+
+      const cancelButton = document.getElementById("cancelButton");
+      const acceptButton = document.getElementById("acceptButton");
+
+      // Time conversion functions
+      function convertToYears(timeInSeconds) {
+        return Math.floor(timeInSeconds / (365 * 24 * 60 * 60));
+      }
+
+      function convertToDays(timeInSeconds) {
+        return Math.floor(timeInSeconds / (24 * 60 * 60)) % 365;
+      }
+
+      function convertToHours(timeInSeconds) {
+        return Math.floor(timeInSeconds / (60 * 60)) % 24;
+      }
+
+      function convertToMinutes(timeInSeconds) {
+        return Math.floor(timeInSeconds / 60) % 60;
+      }
+
+      function convertToSeconds(timeInSeconds) {
+        return Math.floor(timeInSeconds) % 60;
+      }
+
+      // Generate weighted random time
+      function generateWeightedRandomTime() {
+        const randomValue = Math.random() * 100;
+        if (randomValue < 75) {
+          return Math.floor(Math.random() * (604801 - 100 + 1)) + 100;
+        } else {
+          return Math.floor(Math.random() * (788400000 - 604801 + 1)) + 604801;
+        }
+      }
+
+      // Should be red function
+      function shouldBeRed(unit, timeRemaining) {
+        if (timeRemaining === 0) {
+          return true;
+        }
+
+        switch (unit) {
+          case "years":
+            return convertToYears(timeRemaining) === 0;
+          case "days":
+            return (
+              convertToYears(timeRemaining) === 0 &&
+              convertToDays(timeRemaining) === 0
+            );
+          case "hours":
+            return (
+              convertToDays(timeRemaining) === 0 &&
+              convertToHours(timeRemaining) === 0
+            );
+          case "minutes":
+            return (
+              convertToHours(timeRemaining) === 0 &&
+              convertToMinutes(timeRemaining) === 0
+            );
+          case "seconds":
+            return (
+              convertToMinutes(timeRemaining) === 0 &&
+              convertToSeconds(timeRemaining) === 0
+            );
+          default:
+            return false;
+        }
+      }
+
+      function updateCountdown(timeRemaining) {
+        const years = convertToYears(timeRemaining);
+        const days = convertToDays(timeRemaining);
+        const hours = convertToHours(timeRemaining);
+        const minutes = convertToMinutes(timeRemaining);
+        const seconds = convertToSeconds(timeRemaining);
+
+        yearsEl.textContent =
+          years >= 100
+            ? years.toString().padStart(3, "0")
+            : years.toString().padStart(2, "0");
+        daysEl.textContent =
+          days >= 100
+            ? days.toString().padStart(3, "0")
+            : days.toString().padStart(2, "0");
+
+        hoursEl.textContent = hours.toString().padStart(2, "0");
+        minutesEl.textContent = minutes.toString().padStart(2, "0");
+        secondsEl.textContent = seconds.toString().padStart(2, "0");
+
+        yearsEl.classList.toggle("red", shouldBeRed("years", timeRemaining));
+        yearsEl.nextElementSibling.classList.toggle(
+          "red",
+          shouldBeRed("years", timeRemaining)
+        );
+
+        daysEl.classList.toggle("red", shouldBeRed("days", timeRemaining));
+        daysEl.nextElementSibling.classList.toggle(
+          "red",
+          shouldBeRed("days", timeRemaining)
+        );
+
+        hoursEl.classList.toggle("red", shouldBeRed("hours", timeRemaining));
+        hoursEl.nextElementSibling.classList.toggle(
+          "red",
+          shouldBeRed("hours", timeRemaining)
+        );
+
+        minutesEl.classList.toggle(
+          "red",
+          shouldBeRed("minutes", timeRemaining)
+        );
+        minutesEl.nextElementSibling.classList.toggle(
+          "red",
+          shouldBeRed("minutes", timeRemaining)
+        );
+
+        secondsEl.classList.toggle(
+          "red",
+          shouldBeRed("seconds", timeRemaining)
+        );
+        secondsEl.nextElementSibling.classList.toggle(
+          "red",
+          shouldBeRed("seconds", timeRemaining)
+        );
+      }
+
+      // Initialize
+      function initialize() {
+        let timeRemaining = generateWeightedRandomTime();
+
+        termsEl.style.display = "flex";
+        setTimeout(() => {
+          confirmEl.classList.add("visible");
+        }, 10000);
+
+        const shouldShowNotification = Math.random() > 0.8;
+        if (shouldShowNotification) {
+          setTimeout(() => {
+            notificationEl.classList.add("visible");
+            notificationSound
+              .play()
+              .catch((e) => console.log("Audio play failed:", e));
+          }, 2000);
+        }
+
+        updateCountdown(timeRemaining);
+
+        let timer = setInterval(() => {
+          if (timeRemaining > 0) {
+            timeRemaining--;
+            updateCountdown(timeRemaining);
+          }
+        }, 1000);
+      }
+
+      notificationEl.addEventListener("click", () => {
+        notificationEl.classList.remove("visible");
+      });
+
+      cancelButton.addEventListener("click", () => {
+        window.location.reload();
+      });
+
+      acceptButton.addEventListener("click", () => {
+        confirmEl.classList.remove("visible");
+        videoEl.classList.add("visible");
+        loadVideo.play();
+
+        setTimeout(() => {
+          videoEl.classList.remove("visible");
+          termsEl.style.display = "none";
+        }, 1400);
+      });
+
+      loadVideo.addEventListener("ended", () => {
+        videoEl.classList.remove("visible");
+        termsEl.style.display = "none";
+      });
+
+
+      document.addEventListener("DOMContentLoaded", initialize);
+    </script>
+  </body>
+</html>
