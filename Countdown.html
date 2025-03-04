@@ -435,7 +435,7 @@
       const cancelButton = document.getElementById("cancelButton");
       const acceptButton = document.getElementById("acceptButton");
 
-      // Time conversion functions
+
       function convertToYears(timeInSeconds) {
         return Math.floor(timeInSeconds / (365 * 24 * 60 * 60));
       }
@@ -456,7 +456,7 @@
         return Math.floor(timeInSeconds) % 60;
       }
 
-      // Generate weighted random time
+
       function generateWeightedRandomTime() {
         const randomValue = Math.random() * 100;
         if (randomValue < 75) {
@@ -466,7 +466,7 @@
         }
       }
 
-      // Should be red function
+
       function shouldBeRed(unit, timeRemaining) {
         if (timeRemaining === 0) {
           return true;
