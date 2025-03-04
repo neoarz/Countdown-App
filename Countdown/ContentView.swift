@@ -234,7 +234,7 @@ struct TimeUnitRow: View {
         }
         .frame(height: 100 * (UIDevice.current.userInterfaceIdiom == .pad
             ? max(1.4, UIScreen.main.bounds.width / 834 * 1.4)
-            : UIScreen.main.bounds.width / 393)) // Original iPhone height calculation
+            : UIScreen.main.bounds.width / 393)) 
         .offset(y: -16 * min(max(UIScreen.main.bounds.width / 393, 0.8), 1.2))
     }
 }
